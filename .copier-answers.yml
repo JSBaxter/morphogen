@@ -1,0 +1,19 @@
+# This file is auto-managed by copier. Do not edit by hand.
+# `copier update` reads it to know which template version this cell is
+# pinned to. Commit it.
+
+_commit: 1c62444
+_src_path: gh:JSBaxter/stem-cell
+copyright_holder: James Baxter
+copyright_year: 2026
+github_remote: true
+include_agent_container: true
+include_bot_identity: true
+language: python
+license: MIT
+operator_email: james@jsbaxter.dev
+operator_name: James Baxter
+project_description: ''
+project_name: morphogen
+project_purpose: Colony broadcast field for cross-cell coordination and new-cell induction.
+    Cells emit requests/signals; capable cells read the field and act.
