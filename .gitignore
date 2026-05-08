@@ -21,6 +21,10 @@ __pycache__/
 build/
 dist/
 
+# Morphogen runtime state — code is committed; the live DB is not.
+morphogen.db
+morphogen.db-*
+
 # Queue runtime state — code is committed; the live DB is not.
 dev-tools/queue/queue.db
 dev-tools/queue/queue.db-*

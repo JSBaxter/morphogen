@@ -4,13 +4,41 @@
 #   uvx pre-commit install   # one-time, registers .git/hooks/pre-commit
 #   uvx pre-commit run --all-files   # ad-hoc full sweep
 #
-# These hooks use `uv run --directory` so each subproject's tooling
-# lives in its own venv. The queue ships with its own pyproject; add
-# similar entries here as the cell grows new uv-managed sub-projects.
+# Hooks run against the cell-root `pyproject.toml` (morphogen) and
+# any uv-managed sub-projects. Sub-projects use `uv run --directory`
+# so each lives in its own venv (the bundled queue is the example).
 
 repos:
   - repo: local
     hooks:
+      - id: morphogen-ruff-format
+        name: morphogen — ruff format
+        entry: uv run ruff format --check
+        language: system
+        files: ^(src/morphogen/.*|tests/.*)\.py$
+        pass_filenames: false
+
+      - id: morphogen-ruff-lint
+        name: morphogen — ruff check
+        entry: uv run ruff check
+        language: system
+        files: ^(src/morphogen/.*|tests/.*)\.py$
+        pass_filenames: false
+
+      - id: morphogen-mypy
+        name: morphogen — mypy
+        entry: uv run mypy
+        language: system
+        files: ^(src/morphogen/.*|tests/.*)\.py$
+        pass_filenames: false
+
+      - id: morphogen-pytest
+        name: morphogen — pytest
+        entry: uv run pytest -q
+        language: system
+        files: ^(src/morphogen/.*|tests/.*)\.(py|sql)$
+        pass_filenames: false
+
       - id: queue-ruff-format
         name: queue — ruff format
         entry: uv run --directory dev-tools/queue ruff format --check
