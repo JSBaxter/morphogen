@@ -19,11 +19,22 @@ truth.
 
 ## Active directories
 
+- `src/morphogen/`
+  The morphogen package — MCP server, domain models, SQLite
+  storage. The MCP entry point is `src/morphogen/server.py`.
+- `tests/`
+  Pytest suite for the cell-root project. Run from the cell root
+  with `uv run pytest`.
 - `dev-tools/`
   Local-only tooling that runs on a developer's machine. Houses
   the bundled `queue/` MCP server, used by every agent working on
   this cell.  Also houses `agent-container/` (Docker image for running the
   agent in a bounded container).  And `agent-bot/` (GitHub App bot identity wrappers).
+
+Plus the cell-root `Dockerfile`, which builds the morphogen MCP
+server image (HTTP transport on port `8485`, DB at
+`/var/morphogen/morphogen.db`) per the colony's per-cell contract.
+
 (Add directories here as the cell grows.)
 
 ## Reproduction

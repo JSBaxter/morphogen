@@ -1,0 +1,40 @@
+[project]
+name = "morphogen"
+version = "0.0.1"
+description = "Colony broadcast field for cross-cell coordination and new-cell induction."
+requires-python = ">=3.11"
+readme = "README.md"
+license = { file = "LICENSE" }
+dependencies = [
+    "fastmcp>=2.0",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.20",
+    "pytest>=8.0",
+    "ruff>=0.15",
+]
+
+[build-system]
+requires = ["uv_build>=0.11,<0.12"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "morphogen"
+module-root = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_configs = true
+mypy_path = ["src"]
+files = ["src", "tests"]
+
+[tool.ruff]
+target-version = "py311"
+src = ["src", "tests"]

@@ -13,8 +13,11 @@ The structure stays even when the content doesn't.
 
 Colony broadcast field for cross-cell coordination and new-cell induction. Cells emit requests/signals; capable cells read the field and act.
 
-Nothing live yet — fill this in once the cell ships its first
-real artifact.
+Nothing live yet. The Python project at the cell root has its
+toolchain bones in place (`pyproject.toml`, `src/morphogen/` package
+skeleton, `tests/` smoke suite, cell-root `Dockerfile`), but the
+MCP server exposes no domain tools yet — that lands across the
+domain → SQLite repository → MCP server PRs that follow.
 
 ---
 
@@ -22,14 +25,12 @@ real artifact.
 
 Nothing yet.
 
-Examples of what would belong here once the cell has output:
-
-- A service or daemon, with where it runs and the address it's
-  reachable at
-- A scheduled job, with the schedule and the system that runs it
-- A library, with its current released version and where it's
-  published
-- A CLI, with where it's installed and its current version
+The cell-root `Dockerfile` builds an image whose entrypoint is the
+morphogen MCP server with HTTP transport on `0.0.0.0:8485` and the
+SQLite database at `/var/morphogen/morphogen.db` (per the colony's
+per-cell Dockerfile contract). The colony's `docker-compose.yml`
+will run this image as a service in a later colony PR. Until then
+the image only serves the toolless skeleton.
 
 ---
 
@@ -37,7 +38,10 @@ Examples of what would belong here once the cell has output:
 
 ### Build / runtime
 
-- Python  (managed via `uv`)
+- Python 3.11+ managed via `uv` at the cell root (`pyproject.toml`
+  + `uv.lock`); package source under `src/morphogen/`, tests under
+  `tests/`
+- `fastmcp` for the MCP server runtime
 - The bundled queue runtime under `dev-tools/queue/` brings its own
   Python project
 ### External
