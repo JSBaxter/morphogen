@@ -2,7 +2,7 @@
 # `copier update` reads it to know which template version this cell is
 # pinned to. Commit it.
 
-_commit: 1c62444
+_commit: e32abff
 _src_path: gh:JSBaxter/stem-cell
 copyright_holder: James Baxter
 copyright_year: 2026
@@ -12,6 +12,7 @@ include_bot_identity: true
 language: python
 license: MIT
 operator_email: james@jsbaxter.dev
+operator_github_handle: JSBaxter
 operator_name: James Baxter
 project_description: ''
 project_name: morphogen
